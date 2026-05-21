@@ -7,11 +7,10 @@ local options = {
         python = { "ruff_format" },
     },
 
-
     formatters = {
         emmylua_codeformat = {
             command = "emmylua-codeformat",
-            args = { "--stdin" },
+            args = { "format", "--stdin" },
             stdin = true,
         },
 

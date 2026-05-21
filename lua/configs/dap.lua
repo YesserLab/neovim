@@ -15,22 +15,33 @@ dap.adapters.gdb = {
     args = { "--interpreter=dap" },
 }
 
+local function getCppBin()
+    local function fileExists(name)
+        local f = io.open(name, "r")
+        if f ~= nil then
+            io.close(f)
+            return true
+        else
+            return false
+        end
+    end
+    if not fileExists(vim.fn.getcwd() .. "/debug.lua") then
+        return { program = "", args = {} }
+    else
+        return dofile(vim.fn.getcwd() .. "/debug.lua")
+    end
+end
+
 dap.configurations.cpp = {
     {
         name = "cwalk",
         type = "codelldb",
         request = "launch",
-        program = function()
-            return "./cwalk"
-        end,
+        program = getCppBin().program,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         stopAtBeginningOfMainSubprogram = false,
-        args = {
-            "solve",
-            "./test/debug/g20.jen",
-            -- "--dot", "./test/debug/g20-sol.dot", "--adj", "./test/debug/g20-sol.adj"
-        },
+        args = getCppBin().args,
     },
 }
 
