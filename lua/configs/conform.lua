@@ -5,6 +5,7 @@ local options = {
         zig = { "zigfmt" },
         zon = { "zigfmt" },
         python = { "ruff_format" },
+        just = { "just" },
     },
 
     formatters = {

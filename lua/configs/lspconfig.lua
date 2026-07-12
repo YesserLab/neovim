@@ -8,7 +8,6 @@ vim.lsp.config.clangd = {
         "--query-driver=/usr/bin/clang++",
         "--offset-encoding=utf-16",
         "--all-scopes-completion",
-        "--suggest-missing-includes",
         "--completion-style=detailed",
         "--offset-encoding=utf-16",
         "--header-insertion=never",
@@ -52,5 +51,10 @@ vim.lsp.config.pyright = {
     },
 }
 
+vim.lsp.config.just = {
+    cmd = { "just" },
+    filetypes = { "just" },
+    root_markers = { "justfile", ".git" }
+}
 
-vim.lsp.enable { "clangd", "zls", "lua_ls", "pyright" }
+vim.lsp.enable { "clangd", "zls", "lua_ls", "pyright", "just" }

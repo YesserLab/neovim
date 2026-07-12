@@ -30,6 +30,7 @@ return {
                 "vimdoc",
                 "cpp",
                 "python",
+                "just",
             },
         },
     },
